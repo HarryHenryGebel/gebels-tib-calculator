@@ -18,13 +18,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateTip() {
-        // Extract cost of service or return if invalid
-        val costOfService = binding.costOfServiceText.text.toString().toDoubleOrNull()
 
         if (costOfService == null) {
             binding.tipResult.text = ""
             return
         }
+        // Extract cost of service or return if invalid. Convert to cents.
+        val costOfServiceEntry = binding.costOfServiceText.text.toString().toDoubleOrNull() ?: return
+        val costOfService = (costOfServiceEntry * 100).toInt()
 
         val tipPercentage = when (binding.tipOptions.checkedRadioButtonId) {
             R.id.option_twenty_percent -> 0.20
