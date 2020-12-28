@@ -1,1 +1,1 @@
-# gebels-tip-calculator
+# Gebel's Tip Calculator
