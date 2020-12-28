@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private fun calculateTip() {
         // Clear tip result whether successful or not
         binding.tipResult.text = ""
+        binding.totalCost.text = ""
 
         // Extract cost of service or return if invalid. Convert to cents.
         val costOfServiceEntry = binding.costOfServiceText.text.toString().toDoubleOrNull() ?: return
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val formattedTip = NumberFormat.getCurrencyInstance().format(tip.toDouble() / 100)
+        val formattedTotal = NumberFormat.getCurrencyInstance().format(total.toDouble() / 100)
         binding.tipResult.text = getString(R.string.tip_amount, formattedTip)
+        binding.totalCost.text = getString(R.string.total_cost, formattedTotal)
     }
 }
