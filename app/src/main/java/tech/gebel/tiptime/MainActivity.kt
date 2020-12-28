@@ -18,11 +18,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateTip() {
+        // Clear tip result whether successful or not
+        binding.tipResult.text = ""
 
-        if (costOfService == null) {
-            binding.tipResult.text = ""
-            return
-        }
         // Extract cost of service or return if invalid. Convert to cents.
         val costOfServiceEntry = binding.costOfServiceText.text.toString().toDoubleOrNull() ?: return
         val costOfService = (costOfServiceEntry * 100).toInt()
