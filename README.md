@@ -1,1 +1,1 @@
-# gebels-tib-calculator
+# gebels-tip-calculator
