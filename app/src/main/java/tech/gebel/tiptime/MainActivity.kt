@@ -31,14 +31,16 @@ class MainActivity : AppCompatActivity() {
             else -> 0.15
         }
 
-        val tip = if (binding.roundUpSwitch.isChecked)
-            kotlin.math.ceil(tipPercentage * costOfService)
-        else
-            tipPercentage * costOfService
+        var tip = (tipPercentage * costOfService).toInt()
+        var total = tip + costOfService
 
-        val formattedTip = NumberFormat.getCurrencyInstance().format(tip)
+        // if rounding, round total to next unit, then adjust tip accordingly
+        if (binding.roundUpSwitch.isChecked) {
+            total = ceil((total.toDouble() / 100)).toInt() * 100
+            tip = total - costOfService
+        }
+
+        val formattedTip = NumberFormat.getCurrencyInstance().format(tip.toDouble() / 100)
         binding.tipResult.text = getString(R.string.tip_amount, formattedTip)
-
-
     }
 }
